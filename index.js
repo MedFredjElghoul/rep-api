@@ -89,7 +89,7 @@ app.get('/state', (req, res) => {
 
 
 
-// google civic data
+/* google civic data
 app.get('/civic', (req, res) => {
   // The API 1 call you want to make
   axios.get('https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyDsvkIYqCGnYKZb8ZkSsnWZG-70lVHff-c&address=al', {
@@ -108,7 +108,7 @@ app.get('/civic', (req, res) => {
       console.log(error);
   });
 });
-
+*/
 
 app.listen(port, () => {
     console.log(`[Info] vt-proxy listening at http://localhost:${port}`);
