@@ -1,5 +1,5 @@
 # rep-api
-This Project is an Api that give the user the possibility of contacting your legislator representative by providing an adresse
+This Project is an Api that give the user the possibility of contacting your legislator representative by providing an address
 
 ## Endpoint list : 
 - /all get the list of all the 535 congresse members (The 435 members of the House of Representatives & the 100 Senators )
