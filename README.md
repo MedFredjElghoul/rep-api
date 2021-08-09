@@ -7,6 +7,8 @@ This Project is an Api that give the user the possibility of contacting your leg
 - /state  the same as /members but calling the (/members) endpoint instead of  the propublica API
 
 ## How to use :
+Before you start you need to install nodejs on your device: [you can download it from here](https://nodejs.org/en/download/),
+then:
 - Clone the repo
-- npm i to instal the dependencies
-- node . to run
+- To instal the dependencies:  npm i
+- To run the project: node .   
