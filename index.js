@@ -123,45 +123,6 @@ app.get('/state/:state', (req, res) => {
 
 
 
-//test
-app.get('/test', verifyToken, (req, res) => {
-  // The API 1 call you want to make
-  //  Baywood%2C%20%C3%89tat%20de%20New%20York%2011706
-  jwt.verify(req.token, 'secretkey', (err, authData) =>{
-     if (err) {
-       res.sendStatus(403);
-     }else{
-      axios.get('https://api.geocod.io/v1.6/geocode?api_key=fed67e56db17df09e096f19e970be9f9bf176ef&fields=cd&q=1109+N+Highland+St%2c+Arlington+VA', {
- 
-      })
-      .then(response1 => {
-          // Merge response1 and response2 for example
-          const result =  response1.data;
-          var repList = JSON.stringify(result, null, 2)
-          lReps = repList;
-         console.log(lReps);
-          
-          // Write response head 
-          res.setHeader('Content-Type', 'application/json');
-          // Write the json content and end the connection
-          res.end(JSON.stringify(result),authData);
-    
-          
-        })
-      
-      
-      .catch(error => {
-          console.log(error);
-      });
-     }
-  });
-  
-});
-
-
-
-
-
 
 
 // geocod data
@@ -228,6 +189,44 @@ app.get('/data', verifyToken, (req, res) => {
 });
  
 });
+
+
+
+// ALL representative per adress dynamic
+app.get('/data/:adr', verifyToken, (req, res) => {
+  var spacer ={"data from": "civic"}
+  var G_API = process.env.GEOCOD_API_KEY; 
+  var C_API = process.env.CVIC_API_KEY; 
+  var RepAdress = ""+req.params.adr+"";
+  
+  jwt.verify(req.token, 'secretkey', (err, authData) =>{
+   if (err) {
+     res.sendStatus(403);
+   }else{
+      // The API 1 call you want to make
+   axios.get(`https://api.geocod.io/v1.6/geocode?api_key=`+G_API+`&fields=cd&q=`+RepAdress, {
+     
+   })
+   .then(response1 => {
+     axios.get(`https://www.googleapis.com/civicinfo/v2/representatives?key=`+C_API+`&levels=country&roles=legislatorUpperBody&roles=legislatorLowerBody&address=`+RepAdress, {    
+   }).then( response2 => {
+      // Merge response1 and response2 for example
+      const result = [ response1.data, spacer, response2.data ];
+      var repList = JSON.stringify(result, null, 2)
+      lReps = repList;
+      // Write response head
+      res.setHeader('Content-Type', 'application/json');
+      // Write the json content and end the connection
+      res.end(JSON.stringify(result));
+    })
+   })
+   .catch(error => {
+      console.log(error);
+   });
+   }
+ });
+  
+ });
 
 
 
