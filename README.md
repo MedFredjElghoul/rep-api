@@ -2,7 +2,7 @@
 This Project is an Api that give the user the possibility of contacting their legislator representative by providing an address
 
 ## Endpoint list : 
-- /all get the list of all the 535 congresse members (The 435 members of the House of Representatives & the 100 Senators )
+- /all get the list of all the 535 congress  members (The 435 members of the House of Representatives & the 100 Senators )
 - /Members get the list of representative per state (House of Representatives & Senators )
 - /state  the same as /members but calling the (/members) endpoint instead of  the propublica API
 
