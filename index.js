@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const port = 8081;
+const port = process.env.PORT || 8081;
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 var lReps = [];
